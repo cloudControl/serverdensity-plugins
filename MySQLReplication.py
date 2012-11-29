@@ -15,7 +15,6 @@ class MySQLReplication(object):
 
         cursor.execute("show slave status")
         row = cursor.fetchone()
-        self.checksLogger.info(row)
         result = {}
 
         # convert flags to integer values 1/0
