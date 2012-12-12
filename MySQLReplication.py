@@ -16,7 +16,7 @@ class MySQLReplication(object):
             cursor = db.cursor(MySQLdb.cursors.DictCursor)
 
             cursor.execute("show slave status")
-            row = cursor.fetchone()
+            row = cursor.fetchone() or {}
         except:
             return {'Running': 0}
         else:
