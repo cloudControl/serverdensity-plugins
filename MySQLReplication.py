@@ -8,14 +8,19 @@ class MySQLReplication(object):
         self.rawConfig = rawConfig
 
     def run(self):
-        db = MySQLdb.connect(host=self.agentConfig['MySQLServer'],
-            user=self.agentConfig['MySQLUser'],
-            passwd=self.agentConfig['MySQLPass'])
-        cursor = db.cursor(MySQLdb.cursors.DictCursor)
+        try:
+            db = MySQLdb.connect(
+                host=self.agentConfig['MySQLServer'],
+                user=self.agentConfig['MySQLUser'],
+                passwd=self.agentConfig['MySQLPass'])
+            cursor = db.cursor(MySQLdb.cursors.DictCursor)
 
-        cursor.execute("show slave status")
-        row = cursor.fetchone()
-        result = {}
+            cursor.execute("show slave status")
+            row = cursor.fetchone()
+        except:
+            return {'Running': 0}
+        else:
+            result = {'Running': 1}
 
         # convert flags to integer values 1/0
         for key in ['Slave_SQL_Running', 'Slave_IO_Running']:
@@ -31,7 +36,8 @@ class MySQLReplication(object):
                 result[key] = -1
 
         # integer values
-        for key in ['Master_Port', 'Until_Log_Pos', 'Skip_Counter',
+        for key in [
+                'Master_Port', 'Until_Log_Pos', 'Skip_Counter',
                 'Relay_Log_Pos', 'Connect_Retry']:
             if key in row:
                 result[key] = row[key]

@@ -6,6 +6,7 @@ use Master-Slave (or Master-Master) replication.
 
 Following metrices (keys) are exposed by the plugin:
 * Flags (0 or 1):
+    + Running
     + Slave_SQL_Running
     + Slave_IO_Running
 * Integer metrices:
@@ -29,7 +30,8 @@ to check if the value is greater then chosen threshold value. But one can also
 have a 'less then 0' alert to catch the occurances of -1 value.
 
 All the metrices are generate via 'show slave status' MySQL command and have
-the same meaning.
+the same meaning. The 'Running' flags shows if the database is reachable at
+all.
 
 #### Requirements
 The plugin requires the following fields to be set in the
