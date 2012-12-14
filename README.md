@@ -42,3 +42,10 @@ The plugin requires the following fields to be set in the
 
 Those are the same fields that are used by the Serverdensity's built-in MySQL
 monitoring alerts.
+
+
+### SupervisordCheck
+SupervisordCheck plugin checks if the supervisord is running. This is done by
+checking if the socket file ('/var/run/supervisor.sock') exists.
+
+The metric exposed, 'Running', can have values of either 0 or 1.
