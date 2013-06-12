@@ -49,3 +49,21 @@ SupervisordCheck plugin checks if the supervisord is running. This is done by
 checking if the socket file ('/var/run/supervisor.sock') exists.
 
 The metric exposed, 'Running', can have values of either 0 or 1.
+
+### HipacheBackends
+HipacheBackends plugin monitors dead backends in [Hipache environment](https://github.com/dotcloud/hipache).
+
+Following metrics (keys) are exposed by the plugin:
+
+* Integer metrics (number of frontends):
+    + Frontends_with_no_alive_backends (frontends with all backends marked as dead)
+    + Frontends_with_dead_backends (frontends with at least one backend marked as dead)
+    + Dead_backends (number of all dead backends)
+
+#### Requirements
+The plugin allows to define custom redis credentials in '/etc/sd-agent/config.cfg' file:
+
+* redis_host
+* redis_port
+
+If not specified default redis credentials will be used (host=localhost, port=6379)
