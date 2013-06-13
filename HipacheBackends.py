@@ -16,12 +16,12 @@ class HipacheBackends(object):
             frontends_with_no_backends = 0
 
             try:
-                host = self.agentConfig['RedisHost']
+                host = self.rawConfig['Main']['redis_host']
             except (KeyError, TypeError):
                 host = 'localhost'
 
             try:
-                port = self.agentConfig['RedisPort']
+                port = self.rawConfig['Main']['redis_port']
             except (KeyError, TypeError):
                 port = 6379
 
