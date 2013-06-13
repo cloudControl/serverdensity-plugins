@@ -21,7 +21,7 @@ class HipacheBackends(object):
                 host = 'localhost'
 
             try:
-                port = self.rawConfig['Main']['redis_port']
+                port = int(self.rawConfig['Main']['redis_port'])
             except (KeyError, TypeError):
                 port = 6379
 
