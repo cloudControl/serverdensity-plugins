@@ -67,3 +67,16 @@ The plugin allows to define custom redis credentials in '/etc/sd-agent/config.cf
 * redis_port
 
 If not specified default redis credentials will be used (host=localhost, port=6379)
+
+### Redis
+Redis plugin monitors the status of the redis database.
+
+It is using the redis python library to return the a dictionary with all the available info regarding the redis functionality. The user can monitor the values of the info he is interested into. In the case that redis is not reachable it will return an empty dictionary and log the error.
+
+#### Requirements
+The plugin allows to define custom redis credentials in '/etc/sd-agent/config.cfg' file:
+
+* redis_host
+* redis_port
+
+If not specified default redis credentials will be used (host=localhost, port=6379)
