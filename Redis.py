@@ -10,7 +10,7 @@ class Redis(object):
         self.rawConfig = rawConfig
 
     def run(self):
-        info = {}
+        info = {'running': 0}
 
         try:
             host = self.rawConfig['Main']['redis_host']
@@ -26,6 +26,8 @@ class Redis(object):
 
         try:
             info = r.info()
+            info['running'] = 1
+            info['keys_on_db0'] = r.info()['db0']['keys']
         except ConnectionError as e:
             self.checksLogger.error('Failed to collect data: {}'.format(e))
 
