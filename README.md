@@ -59,6 +59,7 @@ Following metrics (keys) are exposed by the plugin:
     + Frontends_with_no_alive_backends (frontends with all backends marked as dead)
     + Frontends_with_dead_backends (frontends with at least one backend marked as dead)
     + Dead_backends (number of all dead backends)
+    + Hchecker_locked_backends (number of backends under check)
 
 #### Requirements
 The plugin allows to define custom redis credentials in '/etc/sd-agent/config.cfg' file:
